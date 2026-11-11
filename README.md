@@ -2,7 +2,7 @@
 
 A small checker for Primavera P6 `.xer` schedule exports. It reads the file,
 sets aside broken rows (with the line number and the reason), runs three
-schedule checks and draws one chart.
+schedule checks, traces the driving path and draws one chart.
 
 ```
 python -m xercheck data/terminal-building-airport.xer data/hotel-project.xer
@@ -25,8 +25,17 @@ both files (4,300 activities, 7,670 links) in about 0.2 s.
 | **Negative float** | 0 | 0 |
 | **High float** (> 44 working days) | 10 (15%) | 2,263 (53%) |
 | High float that also has a logic gap | 4 of 10 | 115 of 2,263 |
+| Driving path, start to finish | 36 activities, 1 day float | 126 activities, 0 float |
+| Activities P6 marks critical (float ≤ 0) | **1** | 197 |
 
 What stands out:
+
+- **Terminal: P6 shows no critical path, but there is one.** Only the start
+  milestone has zero float. The project's must-finish-by date in the file (`plan_end_date`, 1 March 2013) is
+  one day after its early finish, so the whole driving path, 36 activities
+  from `A1010 Project Start` to `A5800 Project End`, carries 1 day of float
+  and none of it is marked critical. Anyone filtering on "critical" in P6
+  would see nothing to protect.
 
 - **Hotel: half the schedule has more than two months of float.** 2,263 of
   4,236 checked activities. In a construction programme that rarely means real
@@ -63,6 +72,15 @@ WBS summary), the same scope DCMA's 14-point assessment uses.
 Float is stored in hours in the XER. It is turned into working days with the
 hours-per-day of **each activity's own calendar**, not a flat 8 hours.
 
+## The driving path
+
+P6 marks an activity critical when its total float is at or below a
+threshold, usually 0. That hides the critical path whenever the finish itself
+has float. So the checker starts from each project's finish (the open end with
+the lowest float) and walks back through predecessors that carry no more float
+than the finish. If the walk reaches an activity with no predecessor, the path
+is continuous; if not, it reports where it breaks.
+
 ## Broken rows
 
 The reader never stops on a bad line. Rows it can't trust are set aside and
@@ -90,7 +108,7 @@ python -m xercheck tests/fixtures/planted-defects.xer --out /tmp/demo
 ```
 python -m xercheck data/*.xer                    # report in ./reports
 python -m xercheck my.xer --high-float-days 30   # stricter threshold
-python -m unittest -v                            # 24 tests
+python -m unittest -v                            # 27 tests
 pip install -e . && xercheck data/*.xer          # optional console command
 ```
 
@@ -100,9 +118,10 @@ pip install -e . && xercheck data/*.xer          # optional console command
 xercheck/parser.py    reads %T/%F/%R, encoding, structural broken rows
 xercheck/schedule.py  activities, links, calendars; field-level broken rows
 xercheck/checks.py    the three checks
+xercheck/critical.py  driving path, start to finish
 xercheck/chart.py     float chart, hand-written SVG
 xercheck/report.py    console, CSV, JSON and HTML output
-tests/                parser, checks, both real files (pinned counts), CLI
+tests/                parser, checks, driving path, both real files, CLI
 ```
 
 ## What I'd add next

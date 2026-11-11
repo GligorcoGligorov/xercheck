@@ -11,6 +11,7 @@ from pathlib import Path
 
 from .chart import float_chart_svg, float_distribution
 from .checks import CHECKS, Finding
+from .critical import DrivingPath, describe, driving_paths
 from .schedule import Schedule
 
 CHECK_TITLES = {
@@ -24,6 +25,10 @@ CHECK_TITLES = {
 class Result:
     schedule: Schedule
     findings: list[Finding]
+
+    @property
+    def paths(self) -> list[DrivingPath]:
+        return driving_paths(self.schedule)
 
     @property
     def errors(self):
@@ -76,6 +81,12 @@ class Result:
             },
             "activities_with_errors": len(flagged),
             "high_float_with_logic_gap": self.high_float_with_logic_gap()[0],
+            "driving_paths": [
+                {"project": p.project, "finish": p.finish.code,
+                 "float_days": p.float_days, "activities": len(p.activities),
+                 "reaches_start": p.reaches_start, "p6_critical": p.p6_critical}
+                for p in self.paths
+            ],
             "float_distribution": float_distribution(s, high_float_days),
             "high_float_days": high_float_days,
         }
@@ -100,6 +111,8 @@ def console_summary(results: list[Result]) -> str:
             else:
                 n, extra = len(fs), f"{len(fs) / max(r.checked, 1):.1%}"
             lines.append(f"  {CHECK_TITLES[c]:<18}{n:>7,}  {extra:<16}{detail}")
+        for p in r.paths:
+            lines.append(f"  Driving path {p.project:<8} {describe(p)}")
         both, high = r.high_float_with_logic_gap()
         if both:
             lines.append(f"  -> {both:,} of {high:,} high-float activities also have a "
@@ -179,12 +192,16 @@ def _issues_table(r: Result) -> str:
 
 
 def _insight(r: Result) -> str:
+    out = []
+    for p in r.paths:
+        out.append(f"<p class='insight'><b>Driving path, {escape(p.project)}:</b> "
+                   f"{escape(describe(p))}.</p>")
     both, high = r.high_float_with_logic_gap()
-    if not both:
-        return ""
-    return (f"<p class='insight'><b>{both:,} of {high:,}</b> high-float activities also "
-            "have a missing or dangling link. That float is more likely a logic gap "
-            "than real slack.</p>")
+    if both:
+        out.append(f"<p class='insight'><b>{both:,} of {high:,}</b> high-float "
+                   "activities also have a missing or dangling link. That float is "
+                   "more likely a logic gap than real slack.</p>")
+    return "".join(out)
 
 
 def html_report(results: list[Result], svg: str, high_float_days: float) -> str:

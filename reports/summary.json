@@ -32,6 +32,16 @@
     },
     "activities_with_errors": 0,
     "high_float_with_logic_gap": 4,
+    "driving_paths": [
+      {
+        "project": "TERMINAL-2",
+        "finish": "A5800",
+        "float_days": 1.0,
+        "activities": 36,
+        "reaches_start": true,
+        "p6_critical": 1
+      }
+    ],
     "float_distribution": {
       "neg": 0,
       "zero": 1,
@@ -83,6 +93,16 @@
     },
     "activities_with_errors": 26,
     "high_float_with_logic_gap": 115,
+    "driving_paths": [
+      {
+        "project": "HBTF-2",
+        "finish": "H0010",
+        "float_days": 0.0,
+        "activities": 126,
+        "reaches_start": true,
+        "p6_critical": 197
+      }
+    ],
     "float_distribution": {
       "neg": 0,
       "zero": 197,
