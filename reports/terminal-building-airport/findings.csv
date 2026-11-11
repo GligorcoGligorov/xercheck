@@ -1,0 +1,22 @@
+check,rule,severity,project,activity_id,activity_name,task_type,total_float_days,detail,xer_line
+missing_links,dangling_finish,warning,TERMINAL-2,BA-P1-30,Piles Work,TT_Task,1,"only SS/SF successors, its finish drives nothing",101
+missing_links,dangling_finish,warning,TERMINAL-2,BA-P1-40,P.C For Footings,TT_Task,1,"only SS/SF successors, its finish drives nothing",102
+missing_links,dangling_finish,warning,TERMINAL-2,BA-P1-160,P.C SOG,TT_Task,71,"only SS/SF successors, its finish drives nothing",105
+missing_links,dangling_finish,warning,TERMINAL-2,BA-P1-90,P.C For Footings,TT_Task,1,"only SS/SF successors, its finish drives nothing",108
+missing_links,dangling_finish,warning,TERMINAL-2,BA-P1-100,R.C For Footings,TT_Task,1,"only SS/SF successors, its finish drives nothing",109
+missing_links,dangling_finish,warning,TERMINAL-2,BA-P1-80,Backfill Works Till (+3),TT_Task,1,"only SS/SF successors, its finish drives nothing",110
+missing_links,dangling_finish,warning,TERMINAL-2,BA-P2-30,P.C For Footings,TT_Task,26,"only SS/SF successors, its finish drives nothing",114
+missing_links,dangling_finish,warning,TERMINAL-2,BA-P2-100,P.C SOG,TT_Task,59,"only SS/SF successors, its finish drives nothing",117
+missing_links,dangling_finish,warning,TERMINAL-2,BA-P3-100,P.C SOG,TT_Task,77,"only SS/SF successors, its finish drives nothing",127
+missing_links,dangling_finish,warning,TERMINAL-2,BA-P4-20,P.C For Footings,TT_Task,1,"only SS/SF successors, its finish drives nothing",136
+missing_links,dangling_finish,warning,TERMINAL-2,BA-P4-90,P.C SOG,TT_Task,107,"only SS/SF successors, its finish drives nothing",139
+high_float,high_float,warning,TERMINAL-2,BA-P1-160,P.C SOG,TT_Task,71,total float 71 days (> 44),105
+high_float,high_float,warning,TERMINAL-2,BA-P2-100,P.C SOG,TT_Task,59,total float 59 days (> 44),117
+high_float,high_float,warning,TERMINAL-2,BA-P3-100,P.C SOG,TT_Task,77,total float 77 days (> 44),127
+high_float,high_float,warning,TERMINAL-2,BA-P4-90,P.C SOG,TT_Task,107,total float 107 days (> 44),139
+high_float,high_float,warning,TERMINAL-2,BA-P1-170,R.C SOG,TT_Task,71,total float 71 days (> 44),152
+high_float,high_float,warning,TERMINAL-2,BA-P2-110,R.C SOG,TT_Task,59,total float 59 days (> 44),153
+high_float,high_float,warning,TERMINAL-2,BA-P3-110,R.C SOG,TT_Task,77,total float 77 days (> 44),154
+high_float,high_float,warning,TERMINAL-2,BA-P4-120,R.C SOG,TT_Task,107,total float 107 days (> 44),155
+high_float,high_float,warning,TERMINAL-2,BA-P1-140,Hollow Core Slab Works,TT_Task,68,total float 68 days (> 44),156
+high_float,high_float,warning,TERMINAL-2,BA-P1-150,LB Beams Works,TT_Task,86,total float 86 days (> 44),163

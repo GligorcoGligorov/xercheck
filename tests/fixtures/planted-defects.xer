@@ -1,0 +1,49 @@
+ERMHDR	19.12	2026-11-12	Project	test	planted defects	dbx	Project Management	USD
+%T	PROJECT
+%F	proj_id	proj_short_name
+%R	1	DEMO
+%T	CALENDAR
+%F	clndr_id	clndr_name	day_hr_cnt
+%R	10	5d x 8h	8
+%R	20	4d x 10h	10
+%T	TASK
+%F	task_id	proj_id	clndr_id	task_code	task_name	task_type	status_code	total_float_hr_cnt
+%R	100	1	10	M-START	Start	TT_Mile	TK_NotStart	0
+%R	101	1	10	A1	Linked fine	TT_Task	TK_NotStart	0
+%R	102	1	10	A2	Late activity	TT_Task	TK_NotStart	-40
+%R	103	1	10	A3	Lots of slack	TT_Task	TK_NotStart	400
+%R	104	1	20	A4	Ten hour days	TT_Task	TK_NotStart	450
+%R	105	1	20	A5	Forty days on 10h	TT_Task	TK_NotStart	400
+%R	106	1	10	A6	No predecessor	TT_Task	TK_NotStart	0
+%R	107	1	10	A7	No successor	TT_Task	TK_NotStart	0
+%R	108	1	10	A8	Only FF predecessor	TT_Task	TK_NotStart	0
+%R	109	1	10	A9	Only SS successor	TT_Task	TK_NotStart	0
+%R	110	1	10	DONE	Finished, unlinked	TT_Task	TK_Complete	
+%R	111	1	10	LOE	Site supervision	TT_LOE	TK_NotStart	800
+%R	112	1	10	UNSCHED	Never scheduled	TT_Task	TK_NotStart	
+%R	199	1	10	M-FINISH	Finish	TT_FinMile	TK_NotStart	0
+%R	101	1	10	DUP	Duplicate id	TT_Task	TK_NotStart	0
+%R		1	10	NOID	No id	TT_Task	TK_NotStart	0
+%R	113	1	10	BAD	Bad float	TT_Task	TK_NotStart	abc
+%R	114	1	10	SHORT
+garbage line from a bad copy-paste
+%T	TASKPRED
+%F	task_pred_id	task_id	pred_task_id	pred_type
+%R	1	101	100	PR_FS
+%R	2	102	101	PR_FS
+%R	3	103	102	PR_FS
+%R	4	104	103	PR_FS
+%R	5	105	104	PR_FS
+%R	6	199	105	PR_FS
+%R	7	101	106	PR_FS
+%R	8	107	101	PR_FS
+%R	9	108	101	PR_FF
+%R	10	199	108	PR_FS
+%R	11	109	101	PR_FS
+%R	12	199	109	PR_SS
+%R	13	112	101	PR_FS
+%R	14	199	112	PR_FS
+%R	15	102	101	PR_FS
+%R	16	103	999	PR_FS
+%R	17	105	105	PR_FS
+%E

@@ -1,0 +1,96 @@
+[
+  {
+    "file": "terminal-building-airport.xer",
+    "p6_version": "5.0",
+    "encoding": "cp1252",
+    "projects": [
+      "TERMINAL-2"
+    ],
+    "activities": 66,
+    "checked_activities": 66,
+    "relationships": 84,
+    "rows_set_aside": 0,
+    "row_warnings": 0,
+    "row_issues_by_kind": {},
+    "checks": {
+      "missing_links": {
+        "count": 11,
+        "by_rule": {
+          "dangling_finish": 11
+        }
+      },
+      "negative_float": {
+        "count": 0,
+        "by_rule": {}
+      },
+      "high_float": {
+        "count": 10,
+        "by_rule": {
+          "high_float": 10
+        }
+      }
+    },
+    "activities_with_errors": 0,
+    "high_float_with_logic_gap": 4,
+    "float_distribution": {
+      "neg": 0,
+      "zero": 1,
+      "low": 48,
+      "mid": 7,
+      "high": 10,
+      "none": 0
+    },
+    "high_float_days": 44.0
+  },
+  {
+    "file": "hotel-project.xer",
+    "p6_version": "6.0",
+    "encoding": "cp1252",
+    "projects": [
+      "CR",
+      "DS",
+      "HBTF-2",
+      "OP"
+    ],
+    "activities": 4236,
+    "checked_activities": 4236,
+    "relationships": 7586,
+    "rows_set_aside": 0,
+    "row_warnings": 19,
+    "row_issues_by_kind": {
+      "no_float": 19
+    },
+    "checks": {
+      "missing_links": {
+        "count": 252,
+        "by_rule": {
+          "no_predecessor": 20,
+          "no_successor": 25,
+          "dangling_finish": 154,
+          "dangling_start": 53
+        }
+      },
+      "negative_float": {
+        "count": 0,
+        "by_rule": {}
+      },
+      "high_float": {
+        "count": 2263,
+        "by_rule": {
+          "high_float": 2263
+        }
+      }
+    },
+    "activities_with_errors": 26,
+    "high_float_with_logic_gap": 115,
+    "float_distribution": {
+      "neg": 0,
+      "zero": 197,
+      "low": 471,
+      "mid": 1286,
+      "high": 2263,
+      "none": 19
+    },
+    "high_float_days": 44.0
+  }
+]

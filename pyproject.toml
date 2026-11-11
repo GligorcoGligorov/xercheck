@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xercheck"
+version = "0.1.0"
+description = "Check Primavera P6 .xer schedules for broken rows, missing links, negative float and high float."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Gligorco Gligorov" }]
+dependencies = []
+
+[project.scripts]
+xercheck = "xercheck.cli:run"
+
+[tool.setuptools]
+packages = ["xercheck"]
